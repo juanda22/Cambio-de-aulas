@@ -1,4 +1,4 @@
-# Cambio-de-aulas
+# Cambio de aulas
 
 Tu facultad es una grilla de n×m aulas cuadradas, y tenés que moverte del aula en la esquina noroeste (esquina superior izquierda en el mapa) al aula de la esquina sureste (esquina inferior derecha en el mapa). Como sos una persona muy eficiente, siempre hacés el recorrido pasando por la mínima cantidad de aulas posibles para llegar del aula inicial a la final.
 
