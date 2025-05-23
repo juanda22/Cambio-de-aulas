@@ -1,0 +1,95 @@
+import java.util.*;
+ 
+public class Entregable1 {
+   static int[][] colegio;
+   static int n, m;
+ 
+   public static class MatMinMax{
+        int[][] minSum;
+        int[][] maxSum;
+         
+         public MatMinMax(int[][] minSum, int[][] maxSum){ //hacemos el constructor
+             this.minSum = minSum;
+             this.maxSum = maxSum;
+         }
+    } 
+       
+        public static void main(String[] args){
+            Scanner sc = new Scanner(System.in);
+            int T = sc.nextInt(); //sacamos la cantidad de matrices a procesar
+            String[] resDeColegios =  new String[T]; //para almacenar que nos dice cada colegio
+             
+            for(int colegioNum = 1; colegioNum<= T;colegioNum++){ //procesamos cada colegio
+                n = sc.nextInt();
+                m = sc.nextInt();
+               colegio = new int[n][m];
+ 
+               for(int k = 0;k<n; k++){ //procesamos cada aula del colegio i-esimo
+                    for(int j=0; j<m; j++){
+                        colegio[k][j] = sc.nextInt();
+                    }
+                }
+               
+                //ponemos condicion de corte para evaluar n y m, metemos un return flase si se cumple y sino se sigue normal
+               int aulasTotalesParaRecorrer = n+m-1;
+               
+               if(aulasTotalesParaRecorrer%2!=0){ //si la cantidad de aulas es impar devolvemos falso
+                   resDeColegios[colegioNum-1] = "NO";
+                   continue;
+                }
+               
+                //Calculamos las matrices de minSum y maxSum
+                MatMinMax res = calcMatMinMax();
+                int[][] minSum = res.minSum;
+                int[][] maxSum = res.maxSum;
+ 
+                if(minSum[n-1][m-1]<=0 && maxSum[n-1][m-1]>=0){
+                    resDeColegios[colegioNum-1] = "Yes";
+                } else {
+                    resDeColegios[colegioNum-1] = "No";
+                }
+ 
+              }
+            
+            for(String res : resDeColegios){
+                System.out.println(res);
+            }
+             
+           sc.close(); //cerramos scanner
+        }
+       
+        static MatMinMax calcMatMinMax(){
+           
+            //generamos las dos matrices que vamos a usar
+            int[][] minSum = new int[n][m];
+            int[][] maxSum = new int[n][m];
+            minSum[0][0] = maxSum[0][0] = colegio[0][0];
+           
+            //llenamos las primer fila y primer columna de las matrices
+            
+            //primera fila de ambas matrices
+            for(int j=1;j<m;j++){
+                minSum[0][j] = minSum[0][j-1]+colegio[0][j];
+                maxSum[0][j] = maxSum[0][j-1]+colegio[0][j];
+            }
+            //primero columna de ambas matrices
+            for(int i=1;i<n;i++){
+                minSum[i][0] = minSum[i-1][0]+colegio[i][0];
+                maxSum[i][0] = maxSum[i-1][0]+colegio[i][0];
+            }
+            
+            //y ahora llenamos el resto de la matriz
+            for(int k=1;k<n;k++){
+                for(int l=1;l<m;l++){
+                    //en el caso de min nos vamos quedando con el valor mas chico 
+                    minSum[k][l] = Math.min(minSum[k-1][l],minSum[k][l-1]) + colegio[k][l];
+                    //en el caso de max nos quedamos con el valor mas grande
+                    maxSum[k][l] = Math.max(maxSum[k-1][l],maxSum[k][l-1]) + colegio[k][l];
+                }
+            }
+            //devolvemos las dos matrices
+            return new MatMinMax(minSum, maxSum);
+       
+        }
+}
+ 
