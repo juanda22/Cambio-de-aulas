@@ -15,14 +15,24 @@ Hay ciertas aulas donde hace frío y ciertas aulas donde hace calor. Para manten
 Para cada caso de prueba, tenés que printear "YES" si es posible hacer lo que se te pide y "NO" sino.
 
 Example
-InputCopy
+Input
+
 2
+
 3 4
+
 1 -1 -1 -1
+
 -1 1 1 -1
+
 1 1 1 -1
+
 1 2
+
 1 1
-OutputCopy
+
+Output
+
 YES
+
 NO
