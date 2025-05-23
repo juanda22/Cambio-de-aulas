@@ -8,6 +8,7 @@ Hay ciertas aulas donde hace frío y ciertas aulas donde hace calor. Para manten
 . La primera línea de la entrada es un número que dice cuántos casos de prueba hay.
 
 . Luego, por cada caso de prueba hay una línea con dos números enteros (n y m) que representan el tamaño de la grilla de aulas, seguida de n líneas cada una con m enteros que dicen si el aula correspondiente es fría (-1) or si es caliente (1). Las n líneas de m enteros cada una representan la grilla de n×m
+
 . Se garantiza que la cantidad total de aulas sobre todos los casos de prueba es a lo sumo 106
 
 
